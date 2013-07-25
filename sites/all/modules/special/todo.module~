@@ -1,0 +1,42 @@
+<?php
+
+function special_block_info() {
+  $blocks['special_items'] = array(
+    'info' => t('special'), //The name that will appear in the block list.
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  return $blocks;
+}
+function special_block_view($delta = '') {
+  switch($delta) {
+    case 'special_items':
+      $block['content'] = drupal_get_form('special_form_function');
+      break;
+  }
+  return $block;
+}
+
+function special_contents(){
+   $query = db_select('taxonomy_vocabulary', 'td')
+    ->fields('td', array('name'))
+    ->condition('city', '$taxonomy_vocabulary->name','=') //Published.
+    ->execute()->fetchAll();
+    return $query; 
+}
+
+function special_form_function()
+{
+    $variables['specials']= special_contents();  
+      foreach($variables['specials'] as $special_title) 
+        $specials[] = $special_title->name;
+
+	dsm($specials);
+/*  $form['todo_content'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $todos,
+  );
+  return $form;
+ }
+
+*/
+?>

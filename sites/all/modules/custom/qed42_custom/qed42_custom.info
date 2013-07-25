@@ -1,0 +1,7 @@
+name = Qed42 Custom Cusnfiguration
+description = Qed42 Custom
+core = 7.x
+package = QED42 Custom Configurations
+version = 7.x-1.0
+project = "qed42_custom"
+

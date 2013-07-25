@@ -1,0 +1,47 @@
+<?php
+
+function todo_block_info() {
+  $blocks['todo_items'] = array(
+    'info' => t('todo'), //The name that will appear in the block list.
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
+  return $blocks;
+}
+function todo_block_view($delta = '') {
+  switch($delta) {
+    case 'todo_items':
+      $block['content'] = drupal_get_form('todo_form_function');
+      break;
+  }
+  return $block;
+}
+
+function todo_contents(){
+   $query = db_select('todo', 'td')
+    ->fields('td',array('tid','tname'))
+    ->condition('status', 'undone') //Published.
+    ->execute()->fetchAll();
+    return $query; 
+}
+
+function todo_form_function()
+{
+    $variables['todos']= todo_contents();  
+      foreach($variables['todos'] as $todo_title) 
+        $todos[] = $todo_title->tname;
+
+
+  $form['todo_content'] = array(
+    '#type' => 'checkboxes',
+    '#options' => $todos,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#name' => 'submit',
+    '#value' => 'submit'
+  ); 
+  return $form;
+ }
+
+
+?>

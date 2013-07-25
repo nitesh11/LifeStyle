@@ -1,0 +1,5 @@
+.sprite-blog-image{ background-position: 0 0; width: 51px; height: 37px; } 
+.sprite-fb-image{ background-position: -101px 0; width: 51px; height: 37px; } 
+.sprite-news-image{ background-position: -202px 0; width: 51px; height: 37px; } 
+.sprite-tweet-image{ background-position: -303px 0; width: 51px; height: 37px; } 
+

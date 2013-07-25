@@ -1,0 +1,7 @@
+name=todo
+description=reminds user of the to-do task
+version=7.x-1.2
+core=7.x
+dependencies[]=block
+dependencies[]=views
+
